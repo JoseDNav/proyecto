@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="hospital.Views.ViewResultados"
+         
+             
+             IconImageSource="libro.png"
+             
+             >
+    <ContentPage.Content>
+
+        <Grid>
+            <Image Source="fondo.png" Aspect="AspectFill"/>
+            <StackLayout BackgroundColor="#10000000">
+                <TableView Intent="Data">
+                    <TableRoot>
+                        <TableSection Title="resultados examenes">
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="2*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="IDExamen" FontAttributes="Bold" />
+                                    <Label Text="IDpaciente" FontAttributes="Bold" Grid.Column="1" />
+                                    <Label Text="Resultado" FontAttributes="Bold" Grid.Column="2" />
+                                    <Label Text="Fecha" FontAttributes="Bold" Grid.Column="3" />
+                                </Grid>
+                            </ViewCell>
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="2*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="1" />
+                                    <Label Text="4" Grid.Column="1" />
+                                    <Label Text="Saludable" Grid.Column="2" />
+                                    <Label Text="2023-02-09" Grid.Column="3" />
+                                </Grid>
+                            </ViewCell>
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="2*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="2" />
+                                    <Label Text="1" Grid.Column="1" />
+                                    <Label Text="ligeramente mal" Grid.Column="2" />
+                                    <Label Text="2023-02-17" Grid.Column="3" />
+                                </Grid>
+                            </ViewCell>
+                        </TableSection>
+                    </TableRoot>
+                </TableView>
+
+                <Label Text="Añadir resultados de examen" FontAttributes="Bold" Margin="10,20,0,0" />
+                <Entry Placeholder="ID del examen" Margin="10,0,10,0" />
+                <Entry Placeholder="Resultado" Margin="10,0,10,0" />
+
+                <Label Text="Seleccione el paciente" />
+                <Picker ItemsSource="{Binding MyOptions}"
+        SelectedItem="{Binding SelectedOption}"
+        ItemDisplayBinding="{Binding Name}" />
+                <Label Text="{Binding SelectedOption.Id}" />
+
+
+                <DatePicker Margin="10,0,10,0" />
+
+
+                <Button Text="Guardar" Margin="10,20,10,0" />
+            </StackLayout>
+
+
+
+        </Grid>
+        
+      
+    </ContentPage.Content>
+</ContentPage>

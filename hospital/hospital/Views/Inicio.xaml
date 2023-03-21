@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="hospital.Views.Inicio"
+             xmlns:local="clr-namespace:hospital.Views"
+            >
+
+
+
+    <local:ViewCitas/>
+    <local:ViewResultados/>
+    <local:ViewnHospitales/>
+
+
+</TabbedPage>

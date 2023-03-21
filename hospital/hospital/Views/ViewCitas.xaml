@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="hospital.Views.ViewCitas"
+             IconImageSource="citas.png"
+             xmlns:local="clr-namespace:hospital.Viewmodels"
+          
+             BackgroundColor="Azure">
+    
+    
+    <ContentPage.BindingContext>
+        <local:ViewModelCitas x:Name="viewModel" />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <Grid>
+            <Image Source="fondo.png" Aspect="AspectFill"/>
+            <StackLayout BackgroundColor="#10000000">
+                
+                
+                <Grid Padding="20">
+                    <Grid.RowDefinitions>
+                       
+                        <RowDefinition Height="50" ></RowDefinition>
+                        <RowDefinition Height="50" ></RowDefinition>
+                        <RowDefinition Height="50" ></RowDefinition>
+                        <RowDefinition Height="50" ></RowDefinition>
+                        <RowDefinition Height="50" ></RowDefinition>
+                        <RowDefinition Height="50" ></RowDefinition>
+                        <RowDefinition Height="50" ></RowDefinition>
+
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        
+                            <ColumnDefinition Width="*" ></ColumnDefinition>
+                        <ColumnDefinition Width="*" ></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Label VerticalTextAlignment="End"  Text="Idcita" Grid.Column="0" Grid.Row="0" />
+                    <Entry Keyboard="Numeric" Text="{Binding Idcita, Source={x:Reference viewModel}}" Grid.Column="1" Grid.Row="0" />
+                    
+                    <Label VerticalTextAlignment="End"  Text="Idpaciente" Grid.Column="0" Grid.Row="1" />
+                    <Entry Keyboard="Numeric" Text="{Binding Idpaciente, Source={x:Reference viewModel}}" Grid.Column="1" Grid.Row="1" />
+
+                    <Label VerticalTextAlignment="End" Text="idmedico" Grid.Column="0" Grid.Row="2" />
+                    <Entry Keyboard="Numeric" Text="{Binding Idmedico, Source={x:Reference viewModel}}" Grid.Column="1" Grid.Row="2" />
+
+                    <Label VerticalTextAlignment="End" Text="hora" Grid.Column="0" Grid.Row="3" />
+                  
+                    <TimePicker Time="{Binding Hora, Source={x:Reference viewModel}}" Grid.Column="1" Grid.Row="3"></TimePicker>
+                    
+
+                    <Label VerticalTextAlignment="End" Text="Fecha" Grid.Column="0" Grid.Row="4" />
+                    <DatePicker Date="{Binding Fecha, Source={x:Reference viewModel}}"  MinimumDate="{Binding Fecha, Source={x:Reference viewModel}}"  Grid.Column="1" Grid.Row="4" />
+
+                    <Button Command="{Binding crearPersonas, Source={x:Reference viewModel}}" Text="Crear" Grid.Column="0" Grid.Row="5"  />
+                    <Button Command="{Binding actualizarPersona, Source={x:Reference viewModel}}" Text="Actualizar" Grid.Column="1" Grid.Row="5"  />
+                    <Button Command="{Binding borrarPersona, Source={x:Reference viewModel}}" Text="Borrar" Grid.Column="0" Grid.Row="6"  Grid.ColumnSpan="2"   />
+
+
+                    <CollectionView Grid.Row="7" Grid.ColumnSpan="2" Grid.Column="0" 
+                        SelectedItem="{Binding PersonaSeleccionada, Source={x:Reference viewModel}}" 
+                        SelectionMode="Single"  
+                                    
+                                    
+                        
+                                    
+                        ItemsSource="{Binding ListPersonas, Source={x:Reference viewModel}}"          
+                                    
+                        SelectionChangedCommand="{Binding actualizarFormulario, Source={x:Reference viewModel}}"
+                        >
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+
+                                <Grid Padding="10">
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" ></ColumnDefinition>
+                                        <ColumnDefinition Width="*" ></ColumnDefinition>
+                                        <ColumnDefinition Width="*" ></ColumnDefinition>
+                                        <ColumnDefinition Width="*" ></ColumnDefinition>
+                                        <ColumnDefinition Width="*" ></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Text="ID Cita"  Grid.Row="0" Grid.Column="0" />
+                                    <Label Text="Fecha" Grid.Row="0" Grid.Column="1"/>
+                                    <Label Text="Hora"  Grid.Row="0" Grid.Column="2"/>
+                                    <Label Text="Paciente"  Grid.Row="0" Grid.Column="3"/>
+                                    <Label Text="Medico"  Grid.Row="0" Grid.Column="4"/>
+
+                                    <Label Text="{Binding IDCita}"  Grid.Row="1" Grid.Column="0" />
+                                    <Label Text="{Binding Fecha}" Grid.Row="1" Grid.Column="1"/>
+                                    <Label Text="{Binding Hora}"  Grid.Row="1" Grid.Column="2"/>
+                                    <Label Text="{Binding IDPaciente}"  Grid.Row="1" Grid.Column="3"/>
+                                    <Label Text="{Binding IDMedico}"  Grid.Row="1" Grid.Column="4"/>
+
+                                </Grid>
+
+
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                </Grid>
+
+
+
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

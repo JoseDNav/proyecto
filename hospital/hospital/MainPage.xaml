@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="hospital.MainPage"
+             xmlns:local ="clr-namespace:hospital.Viewmodels"
+             BackgroundColor="Azure">
+
+    <ContentPage.BindingContext>
+        <local:ViewModelMainPage></local:ViewModelMainPage>
+        
+    </ContentPage.BindingContext>
+    
+    
+    <StackLayout>
+
+        <Image Source="https://images.vexels.com/media/users/3/282288/isolated/preview/9ded914031de73173d19cf30839fef76-logotipo-de-ciruga-a-hospitalaria.png" HeightRequest="200" WidthRequest="200" Aspect="AspectFit" HorizontalOptions="Center" Margin="0,0,0,40"/>
+
+        <Entry Text="{Binding Usuario}" Placeholder="Usuario" TextColor="White" PlaceholderColor="Aquamarine" BackgroundColor="#3C3F45" Margin="0,0,0,10"></Entry>
+
+        <Label Text="Contraseña"></Label>
+        <Entry Text="{Binding Pass}" Placeholder="Contraseña" TextColor="White" PlaceholderColor="Aquamarine" BackgroundColor="#3C3F45" Margin="0,0,0,30"  IsPassword="True"></Entry>
+
+        <Button Command="{Binding inicioSesion}" Text="Entrar" TextColor="Aquamarine" CornerRadius="20" ></Button>
+
+        <Button Command="{Binding inicioSesion}" Text="Registrar" TextColor="Aquamarine" CornerRadius="20" ></Button>
+
+        <Label Text="{Binding Resultado}"></Label>
+
+
+
+    </StackLayout>
+
+</ContentPage>
