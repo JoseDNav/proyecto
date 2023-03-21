@@ -8,13 +8,13 @@ namespace hospital.Models
     {
         public int IDResultado { get; set; }
 
-        public string IDExamen { get; set; }
+        public int IDExamen { get; set; }
 
-        public string IDPaciente { get; set; }
+        public int IDPaciente { get; set; }
 
         public string Resultado { get; set; }
 
-        public string Fecha { get; set; }
+        public DateTime Fecha { get; set; }
 
         public string ToJson()
         {
