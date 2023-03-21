@@ -12,7 +12,7 @@ using Xamarin.Forms;
 
 namespace hospital.Viewmodels
 {
-    internal class ViewModelResultados : INotifyPropertyChanged
+    public class ViewModelResultados : INotifyPropertyChanged
     {
 
         public ViewModelResultados()

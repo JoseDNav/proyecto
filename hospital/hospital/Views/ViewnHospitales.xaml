@@ -2,89 +2,114 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="hospital.Views.ViewnHospitales"
+             xmlns:local="clr-namespace:hospital.Viewmodels"
              
               IconImageSource="cama.png"
              
              >
+    <ContentPage.BindingContext>
+        <local:ViewModelHospitales x:Name="viewModel" />
+    </ContentPage.BindingContext>
+
     <ContentPage.Content>
-        <StackLayout>
-
-            <Grid>
-                <Image Source="fondo.png" Aspect="AspectFill"/>
-                <StackLayout BackgroundColor="#10000000">
-                    <TableView Intent="Data">
-                        <TableRoot>
-                            <TableSection Title="Hospitalizaciones">
-                                <ViewCell>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="2*" />
-                                            <ColumnDefinition Width="2*" />
-                                        </Grid.ColumnDefinitions>
-                                        <Label Text="IDPaciente" FontAttributes="Bold" />
-                                        <Label Text="IDHabitacion" FontAttributes="Bold" Grid.Column="1" />
-                                        <Label Text="FechaEntrada" FontAttributes="Bold" Grid.Column="2" />
-                                        <Label Text="FechaSalida" FontAttributes="Bold" Grid.Column="3" />
-                                    </Grid>
-                                </ViewCell>
-                                <ViewCell>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="2*" />
-                                            <ColumnDefinition Width="2*" />
-                                        </Grid.ColumnDefinitions>
-                                        <Label Text="2" />
-                                        <Label Text="1" Grid.Column="1" />
-                                        <Label Text="2023-02-01" Grid.Column="2" />
-                                        <Label Text="2023-02-28" Grid.Column="3" />
-                                    </Grid>
-                                </ViewCell>
-                                <ViewCell>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="2*" />
-                                            <ColumnDefinition Width="2*" />
-                                        </Grid.ColumnDefinitions>
-                                        <Label Text="1" />
-                                        <Label Text="3" Grid.Column="1" />
-                                        <Label Text="2023-02-03" Grid.Column="2" />
-                                        <Label Text="2023-02-15" Grid.Column="3" />
-                                    </Grid>
-                                </ViewCell>
-                            </TableSection>
-                        </TableRoot>
-                    </TableView>
-
-                    <Label Text="Añadir Hospitalizacion" FontAttributes="Bold" Margin="10,20,0,0" />
-                    <Entry Placeholder="ID del paciente" Margin="10,0,10,0" />
-                    <Entry Placeholder="ID habitacion" Margin="10,0,10,0" />
+        <Grid>
+            <Image Source="fondo.png" Aspect="AspectFill"/>
+            <StackLayout BackgroundColor="#10000000">
 
 
+                <Grid Padding="20">
+                    <Grid.RowDefinitions>
 
-                    <Label Text="FechaEntrada"></Label>
-                    <DatePicker Margin="10,0,10,0" />
+                        <RowDefinition Height="50" ></RowDefinition>
+                        <RowDefinition Height="50" ></RowDefinition>
+                        <RowDefinition Height="50" ></RowDefinition>
+                        <RowDefinition Height="50" ></RowDefinition>
+                        <RowDefinition Height="50" ></RowDefinition>
+                        <RowDefinition Height="50" ></RowDefinition>
+                        <RowDefinition Height="50" ></RowDefinition>
 
-                    <Label Text="FechaSalida"></Label>
-                    <DatePicker Margin="10,0,10,0" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="*" ></ColumnDefinition>
+                        <ColumnDefinition Width="*" ></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Label VerticalTextAlignment="End"  Text="Idhospitalizacion" Grid.Column="0" Grid.Row="0" />
+                    <Entry Keyboard="Numeric" Text="{Binding IDhospitales, Source={x:Reference viewModel}}" Grid.Column="1" Grid.Row="0" />
+
+                    <Label VerticalTextAlignment="End"  Text="idpacente" Grid.Column="0" Grid.Row="1" />
+                    <Entry Keyboard="Numeric" Text="{Binding Idpaciente, Source={x:Reference viewModel}}" Grid.Column="1" Grid.Row="1" />
+
+                    <Label VerticalTextAlignment="End" Text="idhabitacion" Grid.Column="0" Grid.Row="2" />
+                    <Entry Keyboard="Numeric" Text="{Binding IDhabitacion, Source={x:Reference viewModel}}" Grid.Column="1" Grid.Row="2" />
+
+                    <Label VerticalTextAlignment="End" Text="FechaEntrada" Grid.Column="0" Grid.Row="3" />
+                    <DatePicker Date="{Binding Fechaentrada, Source={x:Reference viewModel}}"  MinimumDate="{Binding Fechaentrada, Source={x:Reference viewModel}}"  Grid.Column="1" Grid.Row="3" />
 
 
-                    <Button Text="Guardar" Margin="10,20,10,0" />
-                </StackLayout>
+                    <Label VerticalTextAlignment="End" Text="FechaSalida" Grid.Column="0" Grid.Row="4" />
+                    <DatePicker Date="{Binding Fechasalida, Source={x:Reference viewModel}}"  MinimumDate="{Binding Fechasalida, Source={x:Reference viewModel}}"  Grid.Column="1" Grid.Row="4" />
+
+                    <Button Command="{Binding crearPersonas, Source={x:Reference viewModel}}" Text="Crear" Grid.Column="0" Grid.Row="5"  />
+                    <Button Command="{Binding actualizarPersona, Source={x:Reference viewModel}}" Text="Actualizar" Grid.Column="1" Grid.Row="5"  />
+                    <Button Command="{Binding borrarPersona, Source={x:Reference viewModel}}" Text="Borrar" Grid.Column="0" Grid.Row="6"  Grid.ColumnSpan="2"   />
+
+
+                    <CollectionView Grid.Row="7" Grid.ColumnSpan="2" Grid.Column="0" 
+                        SelectedItem="{Binding PersonaSeleccionada, Source={x:Reference viewModel}}" 
+                        SelectionMode="Single"  
+                                    
+                                    
+                        
+                                    
+                        ItemsSource="{Binding ListPersonas, Source={x:Reference viewModel}}"          
+                                    
+                        SelectionChangedCommand="{Binding actualizarFormulario, Source={x:Reference viewModel}}"
+                        >
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+
+                                <Grid Padding="10">
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" ></ColumnDefinition>
+                                        <ColumnDefinition Width="*" ></ColumnDefinition>
+                                        <ColumnDefinition Width="*" ></ColumnDefinition>
+                                        <ColumnDefinition Width="*" ></ColumnDefinition>
+                                        <ColumnDefinition Width="*" ></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Text="IdHospitalizacion"  Grid.Row="0" Grid.Column="0" />
+                                    <Label Text="Idpacente" Grid.Row="0" Grid.Column="1"/>
+                                    <Label Text="IdHabitacion"  Grid.Row="0" Grid.Column="2"/>
+                                    <Label Text="Fechaentrada"  Grid.Row="0" Grid.Column="3"/>
+                                    <Label Text="Fechasalida"  Grid.Row="0" Grid.Column="4"/>
+
+                                    <Label Text="{Binding IDHospitalizacion}"  Grid.Row="1" Grid.Column="0" />
+                                    <Label Text="{Binding  IDPaciente}" Grid.Row="1" Grid.Column="1"/>
+                                    <Label Text="{Binding IDHabitacion}"  Grid.Row="1" Grid.Column="2"/>
+                                    <Label Text="{Binding FechaEntrada}"  Grid.Row="1" Grid.Column="3"/>
+                                    <Label Text="{Binding FechaSalida}"  Grid.Row="1" Grid.Column="4"/>
+
+                                </Grid>
+
+
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                </Grid>
 
 
 
-            </Grid>
-
-
-
-
-
-        </StackLayout>
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
